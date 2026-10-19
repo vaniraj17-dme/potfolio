@@ -3,13 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Vani Raj &amp; Uma Singh | Blog &amp; Insights</title>
+<title>Vani Raj &amp; Uma Singh | Creative Direction &amp; Digital Growth</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- Lightweight Markdown Parser -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
 <style>
 :root{
   --bg: #FAFAF9;
@@ -19,8 +16,14 @@
   --mute: #596172;
   --line: #E2E5EA;
   --acc: #1E3AEC;
+  --acc-glow: rgba(30, 58, 236, 0.12);
   --hi: #E2F542;
+  --green: #10B981;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg: #090B0E;
@@ -30,6 +33,7 @@
     --mute: #8E97A8;
     --line: #222733;
     --acc: #687DFF;
+    --acc-glow: rgba(104, 125, 255, 0.15);
   }
 }
 :root[data-theme="dark"]{
@@ -40,26 +44,28 @@
   --mute: #8E97A8;
   --line: #222733;
   --acc: #687DFF;
+  --acc-glow: rgba(104, 125, 255, 0.15);
 }
 
+html{scroll-padding-top:80px;scroll-behavior:smooth}
 *{box-sizing:border-box}
 body{
   margin:0;
-  padding-top:76px;
+  padding-top:68px;
   padding-bottom:64px;
   background:var(--bg);
   color:var(--ink);
-  font:400 16.5px/1.65 'Instrument Sans', system-ui, sans-serif;
+  font:400 16.5px/1.6 'Instrument Sans', system-ui, sans-serif;
   letter-spacing:-0.01em;
   -webkit-font-smoothing:antialiased;
 }
 
-h1,h2,h3,.nav-logo,.btn-cta{
+h1,h2,h3,figcaption b,.m b,.nav-logo,.btn-cta,.stat-num{
   font-family:'Bricolage Grotesque', 'Arial Narrow', sans-serif;
   letter-spacing:-0.03em;
 }
 
-.w{max-width:820px;margin:0 auto;padding:0 24px}
+.w{max-width:1160px;margin:0 auto;padding:0 24px}
 
 /* Top Navigation Bar */
 .top-bar{
@@ -79,11 +85,47 @@ h1,h2,h3,.nav-logo,.btn-cta{
 }
 :root[data-theme="dark"] .top-bar{background:rgba(9, 11, 14, 0.88)}
 
-.top-bar .w{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1160px}
+.top-bar .w{display:flex;align-items:center;justify-content:space-between;width:100%}
+.brand-wrap{display:flex;align-items:center;gap:12px}
 .nav-logo{font-size:18px;font-weight:800;color:var(--ink);text-decoration:none}
-.nav-links{display:flex;align-items:center;gap:18px}
-.nav-links a{color:var(--mute);text-decoration:none;font-size:14px;font-weight:600;transition:color .2s}
+.nav-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11.5px;
+  font-weight:600;
+  color:var(--mute);
+  background:var(--soft);
+  border:1px solid var(--line);
+  padding:3px 9px;
+  border-radius:99px;
+}
+.pulse{
+  width:6px;height:6px;
+  background:var(--green);
+  border-radius:50%;
+  box-shadow:0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation:pulser 2s infinite;
+}
+@keyframes pulser{
+  0%{box-shadow:0 0 0 0 rgba(16, 185, 129, 0.7)}
+  70%{box-shadow:0 0 0 6px rgba(16, 185, 129, 0)}
+  100%{box-shadow:0 0 0 0 rgba(16, 185, 129, 0)}
+}
+
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-links a{color:var(--mute);text-decoration:none;font-size:14px;font-weight:600;transition:all .2s ease}
 .nav-links a:hover{color:var(--ink)}
+.nav-links .blog-pill{
+  background:var(--hi);
+  color:#111418;
+  padding:4px 12px;
+  border-radius:99px;
+  font-weight:700;
+  font-size:13px;
+  transition:transform .15s ease;
+}
+.nav-links .blog-pill:hover{transform:scale(1.05)}
 .btn-cta{
   background:var(--ink);
   color:var(--bg);
@@ -95,36 +137,226 @@ h1,h2,h3,.nav-logo,.btn-cta{
   display:inline-flex;
   align-items:center;
   gap:6px;
+  transition:all .2s ease;
 }
+.btn-cta:hover{opacity:.9;transform:translateY(-1px);color:var(--bg)}
 
-/* Blog Content */
-.blog-header{padding:32px 0 24px;border-bottom:1px solid var(--line)}
-.blog-header h1{font-size:clamp(40px, 6vw, 64px);line-height:0.95;margin:0 0 12px;font-weight:800}
-.blog-header p{color:var(--mute);margin:0;font-size:18px}
-
-.post-list{margin-top:40px;display:flex;flex-direction:column;gap:40px}
-.post-card{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:32px;
-  box-shadow:0 4px 20px rgba(0,0,0,0.02);
+/* Hero Section */
+.hero{padding:48px 0 16px}
+.in{display:flex;align-items:flex-end;justify-content:space-between;gap:20px 48px;flex-wrap:wrap}
+h1{
+  font-size:clamp(56px, 9.5vw, 116px);
+  font-weight:800;
+  line-height:.86;
+  margin:0;
+  color:var(--ink);
 }
-.post-tag{
-  display:inline-block;
+h1 span+span{margin-left:.22em}
+.hero-tagline{max-width:34ch}
+.hero-tagline p{
+  font-size:clamp(19px, 2.2vw, 24px);
+  line-height:1.28;
+  margin:0 0 10px;
+  font-weight:600;
+  color:var(--ink);
+}
+.hero-byline{
+  font-size:14.5px;
+  color:var(--mute);
+  font-weight:500;
+}
+.hero mark{
   background:var(--hi);
   color:#111418;
-  padding:3px 10px;
-  border-radius:99px;
-  font-size:12px;
-  font-weight:700;
-  margin-bottom:12px;
+  padding:0.05em .28em;
+  border-radius:4px;
 }
-.post-date{font-size:13px;color:var(--mute);margin-bottom:8px}
-.post-title{font-size:clamp(24px, 3.2vw, 32px);margin:0 0 16px;line-height:1.2;color:var(--ink)}
-.post-body{color:var(--ink);line-height:1.7}
-.post-body p{margin:0 0 16px}
-.post-body p:last-child{margin-bottom:0}
+
+/* Pitch Strip */
+.pitch-strip{
+  margin:32px 0 10px;
+  padding:16px 20px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:18px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:16px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.02);
+}
+.pitch-stat{display:flex;flex-direction:column}
+.pitch-stat .stat-num{font-size:26px;font-weight:800;color:var(--acc);line-height:1.1}
+.pitch-stat .stat-label{font-size:12.5px;color:var(--mute);font-weight:500}
+
+/* Bands & Typography */
+.band{padding:54px 0 12px}
+h2{
+  font-size:clamp(32px, 4.4vw, 50px);
+  font-weight:800;
+  line-height:.96;
+  margin:0 0 8px;
+}
+.sub{max-width:58ch;margin:0 0 28px;color:var(--mute);font-size:16px}
+
+/* Reels Rail */
+.rail{
+  display:flex;
+  gap:22px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:6px 24px 22px;
+  margin:0 -24px;
+  scrollbar-width:thin;
+}
+.r{flex:0 0 min(265px, 72vw);margin:0;scroll-snap-align:start}
+.vw{
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  background:var(--soft);
+  box-shadow:0 12px 28px -10px rgba(0,0,0,0.12);
+  transition:transform .25s ease;
+}
+.vw:hover{transform:scale(1.02)}
+video{
+  width:100%;
+  aspect-ratio:9/16;
+  object-fit:cover;
+  display:block;
+  cursor:pointer;
+}
+.sd{
+  position:absolute;
+  right:12px;
+  bottom:12px;
+  width:36px;
+  height:36px;
+  padding:0;
+  display:grid;
+  place-items:center;
+  background:rgba(18, 22, 28, 0.75);
+  backdrop-filter:blur(8px);
+  border:0;
+  border-radius:50%;
+  color:#fff;
+  cursor:pointer;
+  transition:background .2s;
+}
+.sd:hover{background:rgba(18, 22, 28, 0.95)}
+.sd svg{display:block}
+.sd .on{display:none}
+.sd[aria-pressed=true] .on{display:block}
+.sd[aria-pressed=true] .off{display:none}
+
+.vb{
+  position:absolute;
+  left:12px;
+  top:12px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(18, 22, 28, 0.75);
+  backdrop-filter:blur(8px);
+  color:#fff;
+  border-radius:99px;
+  padding:4px 11px 4px 9px;
+  font:700 12.5px 'Instrument Sans', sans-serif;
+}
+figcaption{padding:12px 2px 0;font-size:14.5px;color:var(--mute)}
+figcaption b{display:block;font-size:20px;line-height:1.15;margin-bottom:3px;color:var(--ink)}
+
+/* Reach Grid */
+.rh{margin:36px 0 2px;font-size:26px}
+.reach{display:grid;grid-template-columns:repeat(5, 1fr);gap:16px;margin-top:16px}
+.reach figure{margin:0}
+.reach img{
+  width:100%;
+  aspect-ratio:9/14;
+  object-fit:cover;
+  object-position:top;
+  border-radius:14px;
+  display:block;
+  background:var(--soft);
+  border:1px solid var(--line);
+}
+.reach figcaption{padding:10px 2px 0;font-size:13.5px;line-height:1.3}
+.reach figcaption b{font-size:28px;line-height:1;color:var(--acc);margin-bottom:4px}
+
+/* Stills Section */
+.still{background:var(--soft);padding:60px 0 36px;margin-top:48px;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pin{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;padding:12px 0 24px}
+.pin figure{margin:0 8px 32px;flex:0 1 210px;transition:transform .3s ease;position:relative}
+.pin figure:nth-child(1){transform:rotate(-3deg)}
+.pin figure:nth-child(2){transform:rotate(2deg) translateY(24px);z-index:1}
+.pin figure:nth-child(3){transform:rotate(-2deg) translateY(-8px)}
+.pin figure:nth-child(4){transform:rotate(2.5deg) translateY(12px)}
+.pin figure:nth-child(5){transform:rotate(-2deg) translateY(8px)}
+.pin figure:hover,.pin figure:focus-visible{transform:rotate(0) scale(1.05);z-index:4}
+.pin img{width:100%;display:block;border:8px solid #fff;border-radius:3px;box-shadow:0 16px 36px -12px rgba(18,22,28,.3)}
+.deck{cursor:pointer;outline-offset:8px}
+.deck img{box-shadow:8px 8px 0 0 #fff, 16px 16px 0 0 rgba(220,224,232,.9), 0 16px 36px -12px rgba(18,22,28,.3)}
+.bd{position:absolute;top:16px;right:16px;background:var(--acc);color:#fff;font:800 13px 'Bricolage Grotesque', sans-serif;padding:4px 10px;border-radius:99px}
+
+/* Rows & SEO */
+.rows{border-top:1px solid var(--line);margin-top:18px}
+.row{
+  display:grid;
+  grid-template-columns:220px 1fr 190px;
+  gap:24px;
+  align-items:center;
+  padding:26px 0;
+  border-bottom:1px solid var(--line);
+}
+.row.big{grid-template-columns:220px 1fr 380px}
+.who h3{font-size:25px;line-height:1.05;margin:0}
+.who p{margin:6px 0 0;font-size:13.5px;color:var(--mute);font-weight:500}
+.m{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));
+  gap:12px 18px;
+}
+.m li{
+  background:var(--surface);
+  border:1px solid var(--line);
+  padding:10px 14px;
+  border-radius:12px;
+}
+.m b{
+  display:block;
+  font-size:clamp(22px, 2.6vw, 30px);
+  font-weight:800;
+  line-height:1;
+  color:var(--acc);
+}
+.m span{display:block;margin-top:4px;font-size:12.5px;line-height:1.25;color:var(--mute)}
+.shot{
+  width:100%;
+  height:auto;
+  max-height:150px;
+  object-fit:cover;
+  object-position:top left;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  cursor:zoom-in;
+  transition:opacity .2s;
+}
+.shot:hover{opacity:.9}
+.row.big .shot{max-height:200px}
+.mh{margin:40px 0 12px;font-size:26px}
+.mc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0 28px}
+.mc li{padding:14px 0;border-top:1px solid var(--line)}
+.mc b{display:block;font:800 19px 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}
+.mc span{font-size:14px;color:var(--mute)}
+.also{margin:28px 0 0;color:var(--mute);font-size:14.5px;max-width:82ch;line-height:1.6}
+.also b{color:var(--ink)}
+
+/* Footer */
+footer.main-footer{padding:72px 0 50px}
+footer.main-footer p{margin:0;color:var(--mute);max-width:44ch}
 
 /* Fixed Bottom Contact Bar */
 .bottom-bar{
@@ -150,8 +382,10 @@ h1,h2,h3,.nav-logo,.btn-cta{
   align-items:center;
   justify-content:space-between;
   width:100%;
-  max-width:1160px;
+  flex-wrap:wrap;
+  gap:12px;
 }
+.bot-team{display:flex;align-items:center;gap:8px;font-weight:600}
 .bot-team .team-names{color:var(--ink);font-weight:700}
 .bot-actions{display:flex;align-items:center;gap:12px}
 .bot-btn{
@@ -166,121 +400,498 @@ h1,h2,h3,.nav-logo,.btn-cta{
   padding:5px 12px;
   border-radius:99px;
   font-size:12.5px;
+  transition:all .15s ease;
 }
+.bot-btn:hover{background:var(--surface);color:var(--acc)}
 .bot-btn.wa{background:var(--acc);color:#fff;border-color:transparent}
+.bot-btn.wa:hover{opacity:.9;color:#fff}
+
+/* Modal lightbox */
+.lb,#zb{position:fixed;inset:0;z-index:99;background:rgba(8,10,14,.94);backdrop-filter:blur(8px)}.lb:not([hidden]),#zb:not([hidden]){display:block}
+.lbs{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;height:100%;align-items:center;padding:0 calc(50vw - min(34vh,40vw));scrollbar-width:none}
+.lbs img{flex:none;height:min(80vh,125vw);aspect-ratio:4/5;object-fit:cover;scroll-snap-align:center;border-radius:8px}
+#zb{overflow:auto}#zb img{display:block;margin:64px auto 24px;max-width:min(1200px,94vw);width:auto;height:auto;border-radius:8px;background:#fff}
+.lb button,#zb button{position:absolute;z-index:2;border:0;cursor:pointer;background:#fff;color:#0E1218;font:800 15px 'Bricolage Grotesque',sans-serif}
+.lb .x,#zb .x{top:calc(14px + env(safe-area-inset-top,0px));right:16px;padding:8px 18px;border-radius:99px;position:fixed}
+.lb .a{top:50%;width:44px;height:44px;border-radius:50%;font-size:26px;line-height:1;margin-top:-22px}.lb .p{left:14px}.lb .q{right:14px}.po{display:none}
+
+/* Mobile & Print */
+@media(max-width:860px){
+  .row,.row.big{grid-template-columns:1fr;gap:16px}
+  .shot,.row.big .shot{max-height:220px}
+  .reach{grid-template-columns:repeat(3, 1fr)}
+}
+@media(max-width:600px){
+  .reach{grid-template-columns:repeat(2, 1fr)}
+  .top-bar .nav-links a:not(.blog-pill):not(.btn-cta){display:none}
+  .bot-team .team-names{font-size:12px}
+}
+@media print{
+  .vb{display:flex}.lb.c2 .lbs{grid-template-columns:repeat(6,1fr)}.reach{grid-template-columns:repeat(5,1fr)}
+  .top-bar,.bottom-bar{display:none}body{padding-top:0;padding-bottom:0}
+}
 </style>
 </head>
-<body>
+<body id="top">
 
+<!-- Fixed Top Navigation Bar -->
 <header class="top-bar">
   <div class="w">
-    <a href="index.html" class="nav-logo">Vani &amp; Uma</a>
+    <div class="brand-wrap">
+      <a href="./index.html" class="nav-logo">Vani &amp; Uma</a>
+      <span class="nav-badge"><span class="pulse"></span> Open for Pitches</span>
+    </div>
     <nav class="nav-links">
-      <a href="index.html">← Back to Portfolio</a>
+      <a href="#reels">Reels</a>
+      <a href="#stills">Creative</a>
+      <a href="#seo">Case Studies</a>
+      <a href="./blog.html" class="blog-pill">Blog</a>
       <a href="https://wa.me/918586010263?text=Hi%20Vani%20%26%20Uma%2C%20let%27s%20discuss%20a%20project%21" target="_blank" rel="noopener" class="btn-cta">
-        Chat on WhatsApp
+        <span>Chat on WhatsApp</span>
       </a>
     </nav>
   </div>
 </header>
 
-<main class="w">
-  <header class="blog-header">
-    <h1>Notes &amp; Insights</h1>
-    <p>Articles on creative scripting, SEO strategies, and performance marketing.</p>
+<main>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="w in">
+      <div>
+        <h1><span>Vani</span><span>Raj</span></h1>
+        <div class="hero-byline">With Uma Singh &mdash; Creative Direction &amp; Digital Growth</div>
+      </div>
+      <div class="hero-tagline">
+        <p>I write the line, plan the shoot, <mark>then check the numbers.</mark></p>
+      </div>
+    </div>
+
+    <!-- Executive Client Proof Strip -->
+    <div class="w">
+      <div class="pitch-strip">
+        <div class="pitch-stat">
+          <span class="stat-num">2.53M+</span>
+          <span class="stat-label">Organic Search Impressions (3 mo)</span>
+        </div>
+        <div class="pitch-stat">
+          <span class="stat-num">103K+</span>
+          <span class="stat-label">Top Reel Organic Reach</span>
+        </div>
+        <div class="pitch-stat">
+          <span class="stat-num">+557%</span>
+          <span class="stat-label">Peak Organic User Growth</span>
+        </div>
+        <div class="pitch-stat">
+          <span class="stat-num">₹2.01</span>
+          <span class="stat-label">Paid Social Landing Page View Cost</span>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <div id="posts-container" class="post-list">
-    <p style="color:var(--mute)">Loading blog posts from /blogs/...</p>
+  <!-- Reels Section -->
+  <section id="reels" class="band">
+    <div class="w">
+      <h2>Reels</h2>
+      <p class="sub">Scripted, shot and cut for brands in food, wellness and property. Tap a reel to play it. The eye badge indicates organic Instagram views.</p>
+      
+      <div class="rail">
+        <figure class="r">
+          <div class="vw">
+            <video src="assets/must.mp4" style='background:#e9eaee url("assets/pst_must.jpg") center/cover no-repeat' muted loop playsinline preload="auto"></video>
+            <button class="sd" aria-label="Turn sound on" aria-pressed="false">
+              <svg class="off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+              <svg class="on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            </button>
+          </div>
+          <figcaption><b>Mustard oil</b>A cost breakdown of mustard oil, seed to packaging. The sum is the hook.</figcaption>
+        </figure>
+
+        <figure class="r">
+          <div class="vw">
+            <video src="assets/w17.mp4" style='background:#e9eaee url("assets/pst_w17.jpg") center/cover no-repeat' muted loop playsinline preload="auto"></video>
+            <span class="vb">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>103K
+            </span>
+            <button class="sd" aria-label="Turn sound on" aria-pressed="false">
+              <svg class="off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+              <svg class="on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            </button>
+          </div>
+          <figcaption><b>Stop rushing</b>Most people do not know this. A health explainer on soaking seeds, shot on a terrace.</figcaption>
+        </figure>
+
+        <figure class="r">
+          <div class="vw">
+            <video src="assets/yoga.mp4" style='background:#e9eaee url("assets/pst_yoga.jpg") center/cover no-repeat' muted loop playsinline preload="auto"></video>
+            <span class="vb">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>12.6K
+            </span>
+            <button class="sd" aria-label="Turn sound on" aria-pressed="false">
+              <svg class="off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+              <svg class="on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            </button>
+          </div>
+          <figcaption><b>Yoga</b>Yoga outdoors, cut with slow dissolves. Calm enough that people finish it.</figcaption>
+        </figure>
+
+        <figure class="r">
+          <div class="vw">
+            <video src="assets/woo.mp4" style='background:#e9eaee url("assets/pst_woo.jpg") center/cover no-repeat' muted loop playsinline preload="auto"></video>
+            <button class="sd" aria-label="Turn sound on" aria-pressed="false">
+              <svg class="off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+              <svg class="on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            </button>
+          </div>
+          <figcaption><b>Soap, held up</b>One bar of soap, one pavement, one straight look at the camera.</figcaption>
+        </figure>
+
+        <figure class="r">
+          <div class="vw">
+            <video src="assets/cafe.mp4" style='background:#e9eaee url("assets/pst_cafe.jpg") center/cover no-repeat' muted loop playsinline preload="auto"></video>
+            <button class="sd" aria-label="Turn sound on" aria-pressed="false">
+              <svg class="off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+              <svg class="on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            </button>
+          </div>
+          <figcaption><b>Cafe</b>Menu card, espresso machine, cup. Ten seconds, no talking.</figcaption>
+        </figure>
+
+        <figure class="r">
+          <div class="vw">
+            <video src="assets/re.mp4" style='background:#e9eaee url("assets/pst_re.jpg") center/cover no-repeat' muted loop playsinline preload="auto"></video>
+            <button class="sd" aria-label="Turn sound on" aria-pressed="false">
+              <svg class="off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+              <svg class="on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            </button>
+          </div>
+          <figcaption><b>Cyber City</b>A site walkthrough in Hindi, shot where the buyer would stand.</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="rh">Reach</h3>
+      <p class="sub" style="margin-bottom:0">Instagram views on a few of the reels. The first is the highest performing video.</p>
+      <div class="reach">
+        <figure><img src="assets/r1.jpg" alt="Reel views screenshot"><figcaption><b>103K</b>World of Organic, the top reel</figcaption></figure>
+        <figure><img src="assets/r2.jpg" alt="Reel views screenshot"><figcaption><b>20.2K</b>World of Organic</figcaption></figure>
+        <figure><img src="assets/r3.jpg" alt="Reel views screenshot"><figcaption><b>10.9K</b>World of Organic</figcaption></figure>
+        <figure><img src="assets/r4.jpg" alt="Reel views screenshot"><figcaption><b>12.6K</b>Yoga reel</figcaption></figure>
+        <figure><img src="assets/r5.jpg" alt="Reel views screenshot"><figcaption><b>11.3K</b>Monks &amp; Monkeys</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stills Section -->
+  <section id="stills" class="still">
+    <div class="w">
+      <h2>Stills and a carousel</h2>
+      <p class="sub">Static work for launches, plus two carousels. Open a stack and swipe through it.</p>
+      
+      <div class="pin">
+        <figure class="deck" tabindex="0" role="button" aria-label="Open the nine-slide carousel" data-lb="lb">
+          <img src="assets/s1.jpg" alt="Carousel cover: steal these 7 brand colour tricks">
+          <span class="bd">9 slides</span>
+          <figcaption><b>Steal these 7 brand colour tricks</b>What colour does to people before they read a word.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/mock.jpg" alt="Spoiled for Choice mocktail ad">
+          <figcaption><b>Spoiled for Choice</b>Three drinks, one hand reaching. The headline does the arguing.</figcaption>
+        </figure>
+        <figure class="deck" tabindex="0" role="button" aria-label="Open the six-slide Monks and Monkeys carousel" data-lb="lb2">
+          <img src="assets/q1.jpg" alt="Carousel cover: Mai Aa likhun">
+          <span class="bd">6 slides</span>
+          <figcaption><b>Mai ‘Aa’ likhun</b>A trip planned in six messages, one word each.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/soap.jpg" alt="Mint Cucumber soap ad">
+          <figcaption><b>Mint Cucumber</b>Three claims, one shower.</figcaption>
+        </figure>
+        <figure class="deck" tabindex="0" role="button" aria-label="Open BrewMac concept">
+          <img src="assets/brew.jpg" alt="BrewMac social post concept">
+          <figcaption><b>BrewMac</b>The drink leaves the post and enters the room.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Carousels -->
+  <div id="lb" class="lb" hidden role="dialog" aria-label="Carousel">
+    <h2 class="po">Carousel: steal these 7 brand colour tricks</h2>
+    <button class="x" aria-label="Close">Close</button>
+    <button class="a p" aria-label="Previous slide">&lsaquo;</button>
+    <button class="a q" aria-label="Next slide">&rsaquo;</button>
+    <div class="lbs">
+      <img src="assets/s1.jpg" alt="Colour carousel, slide 1"><img src="assets/s2.jpg" alt="Colour carousel, slide 2"><img src="assets/s3.jpg" alt="Colour carousel, slide 3"><img src="assets/s4.jpg" alt="Colour carousel, slide 4"><img src="assets/s5.jpg" alt="Colour carousel, slide 5"><img src="assets/s6.jpg" alt="Colour carousel, slide 6"><img src="assets/s7.jpg" alt="Colour carousel, slide 7"><img src="assets/s8.jpg" alt="Colour carousel, slide 8"><img src="assets/s9.jpg" alt="Colour carousel, slide 9">
+    </div>
   </div>
+
+  <div id="lb2" class="lb c2" hidden role="dialog" aria-label="Carousel">
+    <h2 class="po">Carousel: Mai ‘X’ likhun</h2>
+    <button class="x" aria-label="Close">Close</button>
+    <button class="a p" aria-label="Previous slide">&lsaquo;</button>
+    <button class="a q" aria-label="Next slide">&rsaquo;</button>
+    <div class="lbs">
+      <img src="assets/q1.jpg" alt="Mai X likhun carousel, slide 1"><img src="assets/q2.jpg" alt="Mai X likhun carousel, slide 2"><img src="assets/q3.jpg" alt="Mai X likhun carousel, slide 3"><img src="assets/q4.jpg" alt="Mai X likhun carousel, slide 4"><img src="assets/q5.jpg" alt="Mai X likhun carousel, slide 5"><img src="assets/q6.jpg" alt="Mai X likhun carousel, slide 6">
+    </div>
+  </div>
+
+  <!-- SEO & Case Studies Section -->
+  <section id="seo" class="band seo">
+    <div class="w">
+      <h2>SEO &amp; Growth</h2>
+      <p class="sub">Keyword rankings, search traffic and verified client growth in healthcare, retail, skincare, cleaning and more. Tap a screenshot to enlarge.</p>
+      
+      <div class="rows">
+        <article class="row">
+          <div class="who">
+            <h3>Baluni Hospital</h3>
+            <p>Healthcare, Dehradun</p>
+          </div>
+          <ul class="m">
+            <li><b>26 / 37</b><span>Keywords on Page 1</span></li>
+            <li><b>100</b><span>Calls from G-Profile</span></li>
+            <li><b>6.8</b><span>Average Google Position</span></li>
+            <li><b>+29.5%</b><span>Active Users in 28 Days</span></li>
+          </ul>
+          <img class="shot" src="assets/c_bal.jpg" alt="Baluni keyword ranking tables">
+        </article>
+
+        <article class="row">
+          <div class="who">
+            <h3>WallMantra</h3>
+            <p>Home decor, e-commerce</p>
+          </div>
+          <ul class="m">
+            <li><b>2.53M</b><span>Search Impressions</span></li>
+            <li><b>12.9K</b><span>Organic Clicks</span></li>
+            <li><b>400K</b><span>Active Annual Users</span></li>
+            <li><b>721</b><span>Direct Purchases</span></li>
+          </ul>
+          <img class="shot" src="assets/c_wm.jpg" alt="WallMantra top search queries">
+        </article>
+
+        <article class="row">
+          <div class="who">
+            <h3>World of Organic</h3>
+            <p>Organic marketplace</p>
+          </div>
+          <ul class="m">
+            <li><b>+315%</b><span>Active Users in 30 Days</span></li>
+            <li><b>7.77K</b><span>Organic Impressions</span></li>
+            <li><b>2.4%</b><span>Click-Through Rate</span></li>
+            <li><b>Top 20</b><span>Product Keywords</span></li>
+          </ul>
+          <img class="shot" src="assets/c_woo.jpg" alt="World of Organic analytics">
+        </article>
+
+        <article class="row">
+          <div class="who">
+            <h3>AZ Dry Cleaners</h3>
+            <p>Dry cleaning, United Kingdom</p>
+          </div>
+          <ul class="m">
+            <li><b>18 / 23</b><span>Keywords on Page One</span></li>
+            <li><b>10</b><span>Top 5 Positions</span></li>
+            <li><b>#1</b><span>Long Coat Cleaning, Hitchin</span></li>
+          </ul>
+          <img class="shot" src="assets/c_az.jpg" alt="AZ Dry Cleaners keyword report">
+        </article>
+
+        <article class="row">
+          <div class="who">
+            <h3>SkinGoodies</h3>
+            <p>Skincare, Australia</p>
+          </div>
+          <ul class="m">
+            <li><b>+498%</b><span>Active Users in 28 Days</span></li>
+            <li><b>8 / 9</b><span>Keywords in Top Six</span></li>
+            <li><b>#2</b><span>Teoxane Skincare</span></li>
+            <li><b>1m 14s</b><span>Avg. Engagement Time</span></li>
+          </ul>
+          <img class="shot" src="assets/c_skin.jpg" alt="SkinGoodies analytics">
+        </article>
+
+        <article class="row">
+          <div class="who">
+            <h3>Sydney's 5 Star Cleaning</h3>
+            <p>Cleaning, Australia</p>
+          </div>
+          <ul class="m">
+            <li><b>+557%</b><span>Active Users in 90 Days</span></li>
+            <li><b>27.3K</b><span>Search Impressions</span></li>
+            <li><b>181</b><span>Organic Clicks</span></li>
+            <li><b>44</b><span>Single Query Clicks</span></li>
+          </ul>
+          <img class="shot" src="assets/c_syd.jpg" alt="Sydney 5 Star Cleaning search data">
+        </article>
+      </div>
+
+      <h3 class="mh">More clients</h3>
+      <ul class="mc">
+        <li><b>Walden</b><span>SEO, walden.com</span></li>
+        <li><b>Fabian Perez Artist</b><span>Social media. 71K followers, 162K page views in 60 days, up 198%.</span></li>
+        <li><b>Monks &amp; Monkeys</b><span>Website, social media and paid ads</span></li>
+        <li><b>Nutriso</b><span>Website and e-commerce store</span></li>
+        <li><b>World of Spas</b><span>Website and e-commerce store</span></li>
+        <li><b>Dr. U.S. Baluni</b><span>Website and Google Business Profile</span></li>
+      </ul>
+      <p class="also"><b>Also worked with:</b> Bay Yoga Studio, Kedar Shadow Resort, Muskan Overseas, Dave Lawson Photography, PurpleSpace Interiors, COLICO, Tiptop Creamery, Chiltern Associates, HelloDrone, BEI Confluence, Krishidisha.</p>
+    </div>
+  </section>
+
+  <!-- Paid Social Section -->
+  <section class="band ads">
+    <div class="w">
+      <h2>Paid Social</h2>
+      <p class="sub">Meta ads built to start conversations or bring qualified traffic, with full cost-per-result transparency.</p>
+      
+      <div class="rows">
+        <article class="row big">
+          <div class="who">
+            <h3>Monks &amp; Monkeys</h3>
+            <p>Travel, Kailash Mansarovar</p>
+          </div>
+          <ul class="m">
+            <li><b>496</b><span>Conversations Started</span></li>
+            <li><b>₹27.18</b><span>Per Conversation</span></li>
+            <li><b>₹13,480</b><span>Total Spent</span></li>
+          </ul>
+          <img class="shot" src="assets/c_mm.jpg" alt="Meta Ads results and ad creatives">
+        </article>
+
+        <article class="row big">
+          <div class="who">
+            <h3>World of Organic</h3>
+            <p>Organic food, June campaign</p>
+          </div>
+          <ul class="m">
+            <li><b>811</b><span>Landing Page Views</span></li>
+            <li><b>₹2.01</b><span>Per Landing View</span></li>
+            <li><b>₹1,626</b><span>Total Spent</span></li>
+          </ul>
+          <img class="shot" src="assets/c_woo_ad.jpg" alt="Meta Ads landing page views">
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agency Next Footer Section -->
+  <footer class="main-footer">
+    <div class="w">
+      <h2>Next</h2>
+      <p>A new agency is on the way. The name is still being decided.</p>
+    </div>
+  </footer>
 </main>
 
+<!-- Fixed Bottom Contact Bar -->
 <footer class="bottom-bar">
   <div class="w">
     <div class="bot-team">
       <span class="team-names">Vani Raj &amp; Uma Singh</span>
     </div>
     <div class="bot-actions">
-      <a href="tel:+918586010263" class="bot-btn">📞 +91 85860 10263</a>
-      <a href="https://wa.me/918586010263" target="_blank" rel="noopener" class="bot-btn wa">💬 WhatsApp</a>
+      <a href="tel:+918586010263" class="bot-btn">
+        📞 +91 85860 10263
+      </a>
+      <a href="https://wa.me/918586010263?text=Hi%20Vani%20%26%20Uma%2C%20let%27s%20discuss%20a%20project%21" target="_blank" rel="noopener" class="bot-btn wa">
+        💬 WhatsApp
+      </a>
     </div>
   </div>
 </footer>
 
+<div id="zb" hidden role="dialog" aria-label="Screenshot"><button class="x">Close</button><img alt=""></div>
+
 <script>
-// GitHub API endpoint to fetch list of files inside the 'blogs' folder
-const REPO_OWNER = 'vaniraj17-dme';
-const REPO_NAME = 'potfolio';
-const FOLDER_PATH = 'blogs';
+(function(){
+  var vs = [].slice.call(document.querySelectorAll('video'));
+  var rm = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-async function loadBlogs() {
-  const container = document.getElementById('posts-container');
-  try {
-    const apiRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FOLDER_PATH}`);
-    if (!apiRes.ok) {
-      container.innerHTML = '<p style="color:var(--mute)">No articles found in /blogs/ folder.</p>';
-      return;
-    }
-    const files = await apiRes.json();
-    
-    // Filter for markdown files (.md)
-    const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
+  vs.forEach(function(v){
+    var bt = v.parentNode.querySelector('.sd');
+    v.addEventListener('click', function(){
+      v.paused ? v.play().catch(function(){}) : v.pause();
+    });
+    bt.addEventListener('click', function(){
+      v.muted = !v.muted;
+      bt.setAttribute('aria-pressed', String(!v.muted));
+      bt.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Turn sound off');
+    });
+  });
 
-    if (mdFiles.length === 0) {
-      container.innerHTML = '<p style="color:var(--mute)">No markdown posts found in /blogs/ yet.</p>';
-      return;
-    }
-
-    container.innerHTML = '';
-
-    for (const file of mdFiles) {
-      // Fetch the raw content of each markdown file
-      const postRes = await fetch(file.download_url);
-      const rawText = await postRes.text();
-
-      // Extract optional Front Matter metadata (--- title, tag, date ---)
-      let title = file.name.replace('.md', '').replace(/-/g, ' ');
-      let date = '';
-      let tag = 'Article';
-      let bodyText = rawText;
-
-      if (rawText.startsWith('---')) {
-        const parts = rawText.split('---');
-        if (parts.length >= 3) {
-          const metaLines = parts[1].split('\n');
-          metaLines.forEach(line => {
-            const [k, ...v] = line.split(':');
-            if (k && v) {
-              const key = k.trim().toLowerCase();
-              const val = v.join(':').trim();
-              if (key === 'title') title = val;
-              if (key === 'date') date = val;
-              if (key === 'tag') tag = val;
-            }
-          });
-          bodyText = parts.slice(2).join('---').trim();
+  try{
+    var io = new IntersectionObserver(function(e){
+      e.forEach(function(x){
+        var v = x.target;
+        if(x.isIntersecting){
+          if(!rm) v.play().catch(function(){});
+        } else {
+          v.pause();
         }
-      }
+      });
+    }, {threshold: .7});
+    vs.forEach(function(v){ io.observe(v); });
+  }catch(e){}
 
-      // Render Markdown into HTML
-      const htmlContent = marked.parse(bodyText);
-
-      const article = document.createElement('article');
-      article.className = 'post-card';
-      article.innerHTML = `
-        ${tag ? `<span class="post-tag">\${tag}</span>` : ''}
-        ${date ? `<div class="post-date">\${date}</div>` : ''}
-        <h2 class="post-title">${title}</h2>
-        <div class="post-body">${htmlContent}</div>
-      `;
-      container.appendChild(article);
-    }
-  } catch (err) {
-    container.innerHTML = '<p style="color:var(--mute)">Failed to fetch blogs. Please check your GitHub repository.</p>';
+  var zb = document.getElementById('zb'), zi = zb.querySelector('img'), cur = null;
+  function shut(){
+    if(cur){ cur.hidden = true; cur = null; }
+    zb.hidden = true;
+    document.body.style.overflow = '';
   }
-}
 
-loadBlogs();
+  function go(d){
+    if(!cur) return;
+    var st = cur.querySelector('.lbs');
+    st.scrollBy({left: d * st.querySelector('img').offsetWidth * 1.05, behavior: 'smooth'});
+  }
+
+  document.querySelectorAll('.deck').forEach(function(dk){
+    var lb = document.getElementById(dk.dataset.lb);
+    if (!lb) return;
+    function open(){
+      cur = lb;
+      lb.hidden = false;
+      document.body.style.overflow = 'hidden';
+      lb.querySelector('.lbs').scrollLeft = 0;
+      lb.querySelector('.x').focus();
+    }
+    dk.addEventListener('click', open);
+    dk.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        open();
+      }
+    });
+    lb.querySelector('.x').onclick = shut;
+    lb.querySelector('.p').onclick = function(){ go(-1); };
+    lb.querySelector('.q').onclick = function(){ go(1); };
+    lb.addEventListener('click', function(e){
+      if(e.target === lb || e.target.classList.contains('lbs')) shut();
+    });
+  });
+
+  document.querySelectorAll('.shot').forEach(function(x){
+    x.addEventListener('click', function(){
+      zi.src = x.src;
+      zi.alt = x.alt;
+      zb.hidden = false;
+      document.body.style.overflow = 'hidden';
+      zb.scrollTop = 0;
+    });
+  });
+  zb.addEventListener('click', shut);
+
+  document.addEventListener('keydown', function(e){
+    if(!cur && zb.hidden) return;
+    if(e.key === 'Escape') shut();
+    if(cur){
+      if(e.key === 'ArrowRight') go(1);
+      if(e.key === 'ArrowLeft') go(-1);
+    }
+  });
+})();
 </script>
 </body>
 </html>
