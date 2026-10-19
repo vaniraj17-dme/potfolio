@@ -1,5 +1,6 @@
 # Vani Raj portfolio
 
+
 Static site. Open `index.html` to view it. Text lives in `index.html`; videos and images are in `assets/`.
 
 ## Publish with GitHub Pages
