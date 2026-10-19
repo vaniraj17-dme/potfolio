@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "dear-future-generation",
+    "file": "dear-future-generation.txt",
+    "title": "Dear Future Generation... Hello!",
+    "date": "October 2026",
+    "tag": "Essay",
+    "readTime": "4 min read",
+    "excerpt": "A letter addressing future generations on society, technology, human connection, and what remains."
+  },
+  {
+    "slug": "role-of-language-subjugation-of-women",
+    "file": "role-of-language.txt",
+    "title": "The Role Language Plays in the Subjugation of Women",
+    "date": "October 2026",
+    "tag": "Culture & Society",
+    "readTime": "5 min read",
+    "excerpt": "An examination of how linguistic structures, cultural idioms, and everyday rhetoric subtly reinforce gender subjugation."
+  }
+]
