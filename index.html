@@ -88,30 +88,6 @@ h1,h2,h3,figcaption b,.m b,.nav-logo,.btn-cta,.stat-num{
 .top-bar .w{display:flex;align-items:center;justify-content:space-between;width:100%}
 .brand-wrap{display:flex;align-items:center;gap:12px}
 .nav-logo{font-size:18px;font-weight:800;color:var(--ink);text-decoration:none}
-.nav-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-size:11.5px;
-  font-weight:600;
-  color:var(--mute);
-  background:var(--soft);
-  border:1px solid var(--line);
-  padding:3px 9px;
-  border-radius:99px;
-}
-.pulse{
-  width:6px;height:6px;
-  background:var(--green);
-  border-radius:50%;
-  box-shadow:0 0 0 0 rgba(16, 185, 129, 0.7);
-  animation:pulser 2s infinite;
-}
-@keyframes pulser{
-  0%{box-shadow:0 0 0 0 rgba(16, 185, 129, 0.7)}
-  70%{box-shadow:0 0 0 6px rgba(16, 185, 129, 0)}
-  100%{box-shadow:0 0 0 0 rgba(16, 185, 129, 0)}
-}
 
 .nav-links{display:flex;align-items:center;gap:20px}
 .nav-links a{color:var(--mute);text-decoration:none;font-size:14px;font-weight:600;transition:all .2s ease}
@@ -439,7 +415,6 @@ footer.main-footer p{margin:0;color:var(--mute);max-width:44ch}
   <div class="w">
     <div class="brand-wrap">
       <a href="./index.html" class="nav-logo">Vani &amp; Uma</a>
-      <span class="nav-badge"><span class="pulse"></span> Open for Pitches</span>
     </div>
     <nav class="nav-links">
       <a href="#reels">Reels</a>
@@ -540,7 +515,7 @@ footer.main-footer p{margin:0;color:var(--mute);max-width:44ch}
             <video src="assets/woo.mp4" style='background:#e9eaee url("assets/pst_woo.jpg") center/cover no-repeat' muted loop playsinline preload="auto"></video>
             <button class="sd" aria-label="Turn sound on" aria-pressed="false">
               <svg class="off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
-              <svg class="on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              <svg class="on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="#fff"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
             </button>
           </div>
           <figcaption><b>Soap, held up</b>One bar of soap, one pavement, one straight look at the camera.</figcaption>
